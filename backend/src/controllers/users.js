@@ -1,16 +1,15 @@
-// This file contains all the api endpoints related to user i.e.:
-// 1. User login, logout
-// 2. Group creation, addition, deletion
-
 const express = require('express')
+const db = require('../models/conn')
 const router = express.Router()
 
 router.use((req, res, next) => {
     next()
 })
 
-router.get('/', (req, res) => {
-    res.send('users home page')
+router.get('/', async (req, res) => {
+    let coll = db.collection("users")
+    let urs = await coll.find({}).toArray()
+    res.send(urs).status(200)
 })
 
 

@@ -1,10 +1,13 @@
-const express = require('express')
+const dotenv = require('dotenv')
+dotenv.config()
+
 const tasks = require('./controllers/tasks')
 const users = require('./controllers/users')
 
 
+const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
